@@ -35,6 +35,12 @@ df["Order Date"] = pd.to_datetime(df["Order Date"], format="%d-%m-%Y")
 df["Ship Date"]  = pd.to_datetime(df["Ship Date"],  format="%d-%m-%Y")
 
 # ============================================================
+# extract year and month
+# ============================================================
+df["Order Year"]  = df["Order Date"].dt.year
+df["Order Month"] = df["Order Date"].dt.month
+
+# ============================================================
 # Normalization - split into 3 tables
 # ============================================================
 print("\nNormalizing into 3 tables...")
@@ -67,13 +73,15 @@ print(f"products: {len(products):,} unique products")
 orders = df[[
     "Order ID", "Row ID", "Customer ID", "Product ID",
     "Order Date", "Ship Date", "Ship Mode", "Order Priority",
-    "Sales", "Quantity", "Discount", "Profit", "Shipping Cost"
+    "Sales", "Quantity", "Discount", "Profit", "Shipping Cost",
+    "Order Year", "Order Month"
 ]].copy()
 
 orders.columns = [
     "order_id", "row_id", "customer_id", "product_id",
     "order_date", "ship_date", "ship_mode", "order_priority",
-    "sales", "quantity", "discount", "profit", "shipping_cost"
+    "sales", "quantity", "discount", "profit", "shipping_cost",
+    "order_year", "order_month"
 ]
 print(f"orders: {len(orders):,} orders")
 
