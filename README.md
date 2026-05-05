@@ -118,6 +118,13 @@ ANTHROPIC_API_KEY=your_anthropic_api_key_here
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
+### 📥 Download the dataset
+
+Download `Global_Superstore2.csv` from Kaggle:
+[Global Super Store Dataset](https://www.kaggle.com/datasets/apoorvaappz/global-super-store-dataset/code)
+
+Place it in the root directory before continuing.
+
 ### 4. Prepare the database
 
 ```bash
