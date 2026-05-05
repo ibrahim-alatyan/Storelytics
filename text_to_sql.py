@@ -106,17 +106,17 @@ def ask(question: str) -> tuple[str, pd.DataFrame]:
 # ============================================================
 # Test
 # ============================================================
-
-# test_questions = [
-#     "What are the top 5 customers by total sales?",
-#     "Which product category has the highest profit?",
-#     "How many orders were placed in 2014?",
-# ]
-
-# for question in test_questions:
-#     print(f"\nQuestion: {question}")
-#     print("-" * 50)
-#     sql, result = ask(question)
-#     print(f"SQL:\n{sql}")
-#     print(f"\nResult:\n{result}")
-#     print("=" * 50)
+if __name__ == "__main__":
+    test_questions = [
+        "What are the top 5 customers by total sales?",
+        "Which product category has the highest profit?",
+        "How many orders were placed in 2014?",
+    ]
+ 
+    for question in test_questions:
+        print(f"\nQuestion: {question}")
+        print("-" * 50)
+        sql, result = ask(question)
+        print(f"SQL:\n{sql}")
+        print(f"\nResult:\n{result}")
+        print("=" * 50)

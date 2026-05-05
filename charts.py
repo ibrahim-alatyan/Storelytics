@@ -121,23 +121,24 @@ def generate_chart(df: pd.DataFrame, question: str):
 # ============================================================
 # Test
 # ============================================================
-# from text_to_sql import ask
-
-# test_questions = [
-#     "What are the top 5 customers by total sales?",
-#     "What is the total profit by category?",
-#     "What are the monthly sales in 2014?",
-# ]
-
-# for question in test_questions:
-#     print(f"\nQuestion: {question}")
-#     sql, df = ask(question)
-#     print(f"Result:\n{df}")
-
-#     fig = generate_chart(df, question)
-#     if fig:
-#         fig.show()
-#         print("Chart generated ✅")
-#     else:
-#         print("No chart generated")
-#     print("=" * 50)
+if __name__ == "__main__":
+    from text_to_sql import ask
+ 
+    test_questions = [
+        "What are the top 5 customers by total sales?",
+        "What is the total profit by category?",
+        "What are the monthly sales in 2014?",
+    ]
+ 
+    for question in test_questions:
+        print(f"\nQuestion: {question}")
+        sql, df = ask(question)
+        print(f"Result:\n{df}")
+ 
+        fig = generate_chart(df, question)
+        if fig:
+            fig.show()
+            print("Chart generated ✅")
+        else:
+            print("No chart generated")
+        print("=" * 50)
