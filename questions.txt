@@ -1,0 +1,13 @@
+ما هي أعلى 5 منتجات مبيعاً؟
+ما هو إجمالي الأرباح لكل فئة؟
+كم عدد الطلبات في 2014؟
+ما هي أعلى 5 دول من حيث المبيعات؟
+ما هو المنتج الأكثر خسارة؟
+
+
+
+What are the top 5 customers by total sales?
+Which shipping mode is used the most?
+What is the average discount by product category?
+Which market has the highest profit?
+What are the monthly sales trends in 2013?

@@ -30,17 +30,17 @@ def transcribe_audio(audio_file) -> str:
 
 
 
-# ============================================================
-# Test
-# ============================================================
-if __name__ == "__main__":
-    import sys
+# # ============================================================
+# # Test
+# # ============================================================
+# if __name__ == "__main__":
+#     import sys
 
-    if len(sys.argv) < 2:
-        print("Usage: python 04_voice.py <audio_file_path>")
-        print("Example: python 04_voice.py test.wav")
-    else:
-        audio_path = sys.argv[1]
-        print(f"Transcribing: {audio_path}")
-        result = transcribe_audio(audio_path)
-        print(f"Transcription: {result}")
+#     if len(sys.argv) < 2:
+#         print("Usage: python voice.py <audio_file_path>")
+#         print("Example: python voice.py test.wav")
+#     else:
+#         audio_path = sys.argv[1]
+#         print(f"Transcribing: {audio_path}")
+#         result = transcribe_audio(audio_path)
+#         print(f"Transcription: {result}")
