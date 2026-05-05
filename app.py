@@ -1,3 +1,10 @@
+# ============================================================
+# Main Streamlit app
+# ============================================================
+
+# ============================================================
+# libraries
+# ============================================================
 import streamlit as st
 from text_to_sql import ask
 from charts import generate_chart
@@ -12,6 +19,32 @@ st.set_page_config(
     layout="wide"
 )
 
+# ============================================================
+# Sidebar - Voice Input + Clear Chat
+# ============================================================
+with st.sidebar:
+    st.title("🎤 Voice Input")
+    audio = st.audio_input("Record your question")
+
+    if audio:
+        with st.spinner("Transcribing..."):
+            # Fix: send audio with correct filename so Groq knows the format
+            audio_bytes = audio.read()
+            import io
+            audio_file = io.BytesIO(audio_bytes)
+            audio_file.name = "recording.wav"
+            question_from_voice = transcribe_audio(audio_file)
+        st.success(f"Transcribed: {question_from_voice}")
+        st.session_state["voice_question"] = question_from_voice
+
+    st.divider()
+    if st.button("🗑️ Clear Chat"):
+        st.session_state.messages = []
+        st.rerun()
+
+# ============================================================
+# Main area
+# ============================================================
 st.title("🛒 Superstore Chatbot")
 st.caption("Ask anything about the data — in English or Arabic")
 
@@ -34,22 +67,18 @@ for message in st.session_state.messages:
 # Process question
 # ============================================================
 def process_question(question: str):
-    # Add user message to chat
     st.session_state.messages.append({"role": "user", "content": question})
 
     with st.chat_message("user"):
         st.write(question)
 
-    # Generate answer
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             sql, df = ask(question)
 
-        # Show SQL in expander
         with st.expander("View SQL"):
             st.code(sql, language="sql")
 
-        # Show result table
         if "error" in df.columns:
             st.error(f"Error: {df['error'][0]}")
             st.session_state.messages.append({
@@ -58,8 +87,6 @@ def process_question(question: str):
             })
         else:
             st.dataframe(df)
-
-            # Generate and show chart
             fig = generate_chart(df, question)
             if fig:
                 st.plotly_chart(fig, use_container_width=True)
@@ -77,24 +104,15 @@ def process_question(question: str):
                 })
 
 # ============================================================
-# Text input
+# Handle voice question
+# ============================================================
+if "voice_question" in st.session_state and st.session_state["voice_question"]:
+    process_question(st.session_state["voice_question"])
+    st.session_state["voice_question"] = None
+
+# ============================================================
+# Text input - always at the bottom
 # ============================================================
 question = st.chat_input("Type your question...")
 if question:
     process_question(question)
-
-# ============================================================
-# Voice input
-# ============================================================
-st.divider()
-st.subheader("🎤 Voice Input")
-audio = st.audio_input("Record your question")
-
-if audio:
-    with st.spinner("Transcribing..."):
-        question = transcribe_audio(audio)
-    st.success(f"Transcribed: {question}")
-    process_question(question)
-
-
-

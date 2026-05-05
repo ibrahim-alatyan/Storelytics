@@ -1,4 +1,8 @@
 # ============================================================
+# convert text to sql quary
+# ============================================================
+
+# ============================================================
 # libraries
 # ============================================================
 import sqlite3
@@ -70,6 +74,7 @@ Rules:
 - No explanations, no markdown, no backticks
 - Always use table aliases (o for orders, c for customers, p for products)
 - Use JOIN when data from multiple tables is needed
+- Never SELECT id columns (customer_id, product_id, row_id) unless specifically asked
 """
  
     message = client.messages.create(
