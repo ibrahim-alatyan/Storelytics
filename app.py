@@ -6,6 +6,7 @@
 # libraries
 # ============================================================
 import streamlit as st
+import time
 from text_to_sql import ask
 from charts import generate_chart
 from voice import transcribe_audio
@@ -55,13 +56,13 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Display chat history
-for message in st.session_state.messages:
+for i, message in enumerate(st.session_state.messages):
     with st.chat_message(message["role"]):
         st.write(message["content"])
         if "dataframe" in message:
             st.dataframe(message["dataframe"])
         if "chart" in message:
-            st.plotly_chart(message["chart"], use_container_width=True)
+            st.plotly_chart(message["chart"], use_container_width=True, key=f"history_{i}")
 
 # ============================================================
 # Process question
@@ -89,7 +90,7 @@ def process_question(question: str):
             st.dataframe(df)
             fig = generate_chart(df, question)
             if fig:
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key=f"chart_{time.time()}")
                 st.session_state.messages.append({
                     "role": "assistant",
                     "content": "Here are the results:",
