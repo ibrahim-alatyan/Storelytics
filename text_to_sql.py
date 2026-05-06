@@ -49,6 +49,8 @@ TABLE: orders
 - discount       (real)
 - profit         (real)
 - shipping_cost  (real)
+- order_year     (integer) extracted from order_date
+- order_month    (integer) extracted from order_date (1-12)
 """
  
 # ============================================================

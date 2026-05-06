@@ -91,6 +91,10 @@ The raw CSV is cleaned and normalized into **3 tables**:
 | order_priority | TEXT | Critical / High / Medium / Low |
 | sales, profit | REAL | Financial metrics |
 | quantity, discount, shipping_cost | REAL | Order details |
+| order_year | INTEGER | Extracted from order_date |
+| order_month | INTEGER | Extracted from order_date |
+
+> **Note:** `order_year` and `order_month` are extracted from `order_date` for easier time-based filtering.
 
 ---
 

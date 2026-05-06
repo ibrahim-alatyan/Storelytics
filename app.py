@@ -14,8 +14,8 @@ from voice import transcribe_audio
 # Page config
 # ============================================================
 st.set_page_config(
-    page_title="Superstore Chatbot",
-    page_icon="🛒",
+    page_title="Storelytics",
+    page_icon="📊",
     layout="wide"
 )
 
@@ -45,7 +45,7 @@ with st.sidebar:
 # ============================================================
 # Main area
 # ============================================================
-st.title("🛒 Superstore Chatbot")
+st.title("📊 Storelytics")
 st.caption("Ask anything about the data — in English or Arabic")
 
 # ============================================================
