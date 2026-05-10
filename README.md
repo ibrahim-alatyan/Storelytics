@@ -30,13 +30,13 @@ User Question (text / voice)
    ┌─────┴──────┐
    │            │
    ▼            ▼
-voice.py    text_to_sql.py
-(Groq        (Claude Sonnet
- Whisper)     → SQL → SQLite)
-                  │
-                  ▼
-             charts.py
-           (Plotly charts)
+src/voice.py    src/text_to_sql.py
+(Groq            (Claude Sonnet
+ Whisper)         → SQL → SQLite)
+                      │
+                      ▼
+                 src/charts.py
+               (Plotly charts)
 ```
 
 ---
@@ -45,14 +45,18 @@ voice.py    text_to_sql.py
 
 ```
 storelytics/
-├── app.py              # Main Streamlit application
-├── text_to_sql.py      # LLM → SQL → DataFrame pipeline
-├── charts.py           # Automatic chart generation
-├── voice.py            # Audio transcription via Groq
-├── cleaning.py         # Data cleaning & SQLite setup
-├── superstore.db       # SQLite database (auto-generated)
-├── Global_Superstore2.csv
-├── .env                # API keys (not committed)
+├── app.py                    # Main Streamlit application
+├── src/
+│   ├── text_to_sql.py        # LLM → SQL → DataFrame pipeline
+│   ├── charts.py             # Automatic chart generation
+│   ├── voice.py              # Audio transcription via Groq
+│   └── cleaning.py           # Data cleaning & SQLite setup
+├── data/
+│   ├── Global_Superstore2.csv
+│   └── Global_Superstore2.xlsx
+├── superstore.db             # SQLite database (auto-generated)
+├── .env                      # API keys (not committed)
+├── .gitignore
 └── README.md
 ```
 
@@ -92,7 +96,7 @@ The raw CSV is cleaned and normalized into **3 tables**:
 | sales, profit | REAL | Financial metrics |
 | quantity, discount, shipping_cost | REAL | Order details |
 | order_year | INTEGER | Extracted from order_date |
-| order_month | INTEGER | Extracted from order_date |
+| order_month | INTEGER | Extracted from order_date (1–12) |
 
 > **Note:** `order_year` and `order_month` are extracted from `order_date` for easier time-based filtering.
 
@@ -127,15 +131,15 @@ GROQ_API_KEY=your_groq_api_key_here
 Download `Global_Superstore2.csv` from Kaggle:
 [Global Super Store Dataset](https://www.kaggle.com/datasets/apoorvaappz/global-super-store-dataset/code)
 
-Place it in the root directory before continuing.
+Place it inside the `data/` folder before continuing.
 
 ### 4. Prepare the database
 
 ```bash
-python cleaning.py
+python src/cleaning.py
 ```
 
-This reads `Global_Superstore2.csv`, cleans the data, and generates `superstore.db`.
+This reads `data/Global_Superstore2.csv`, cleans the data, and generates `superstore.db` in the root directory.
 
 ### 5. Run the app
 

@@ -11,7 +11,7 @@ import sqlite3
 # ============================================================
 # read the data
 # ============================================================
-df = pd.read_csv('Global_Superstore2.csv', encoding="latin1")
+df = pd.read_csv('data\Global_Superstore2.csv', encoding="latin1")
 
 # ============================================================
 # explore the data

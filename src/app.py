@@ -7,9 +7,9 @@
 # ============================================================
 import streamlit as st
 import time
-from text_to_sql import ask
-from charts import generate_chart
-from voice import transcribe_audio
+from src.text_to_sql import ask
+from src.charts import generate_chart
+from src.voice import transcribe_audio
 
 # ============================================================
 # Page config

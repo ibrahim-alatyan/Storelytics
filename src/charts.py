@@ -74,7 +74,7 @@ def generate_chart(df: pd.DataFrame, question: str):
 # Test
 # ============================================================
 if __name__ == "__main__":
-    from text_to_sql import ask
+    from src.text_to_sql import ask
 
     test_questions = [
         "What are the top 5 customers by total sales?",
