@@ -54,6 +54,8 @@ storelytics/
 ├── data/
 │   ├── Global_Superstore2.csv
 │   └── Global_Superstore2.xlsx
+├── assets/
+│   └── superstore_db_schema_en.svg
 ├── superstore.db             # SQLite database (auto-generated)
 ├── .env                      # API keys (not committed)
 ├── .gitignore
@@ -65,6 +67,10 @@ storelytics/
 ## 🗄️ Database Schema
 
 The raw CSV is cleaned and normalized into **3 tables**:
+
+![Database Schema](assets/superstore_db_schema_en.svg)
+
+> **Note:** `order_year` and `order_month` are extracted from `order_date` for easier time-based filtering — no `strftime()` needed in queries.
 
 ### `customers`
 | Column | Type | Description |
@@ -95,10 +101,8 @@ The raw CSV is cleaned and normalized into **3 tables**:
 | order_priority | TEXT | Critical / High / Medium / Low |
 | sales, profit | REAL | Financial metrics |
 | quantity, discount, shipping_cost | REAL | Order details |
-| order_year | INTEGER | Extracted from order_date |
-| order_month | INTEGER | Extracted from order_date (1–12) |
-
-> **Note:** `order_year` and `order_month` are extracted from `order_date` for easier time-based filtering.
+| order_year | INTEGER | Extracted from order_date ✦ |
+| order_month | INTEGER | Extracted from order_date (1–12) ✦ |
 
 ---
 
